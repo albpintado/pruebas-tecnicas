@@ -7,7 +7,15 @@ export const load = (() => {
 		browser && localStorage.getItem('booklist-availableBooks')
 			? localStorage.getItem('booklist-availableBooks') ?? '[]'
 			: '[]';
-	const books = JSON.parse(localBooks).length > 0 ? JSON.parse(localBooks) : fetchAllBooks();
+	const localReadingList =
+		browser && localStorage.getItem('booklist-readingList')
+			? localStorage.getItem('booklist-readingList') ?? '[]'
+			: '[]';
+
+	const books =
+		JSON.parse(localBooks).length < 1 && JSON.parse(localReadingList).length < 1
+			? fetchAllBooks()
+			: JSON.parse(localBooks);
 
 	return {
 		books

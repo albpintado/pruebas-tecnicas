@@ -1,13 +1,24 @@
-<script>
+<script lang="ts">
+	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
-	import { readingList } from '$lib/stores/books';
+	import { books, readingList } from '$lib/stores/books';
+	import type { PageData } from './$types';
 
+	export let data: PageData;
 	$: isFooterExpanded = true;
 
 	const toggleFooter = () => {
 		isFooterExpanded = !isFooterExpanded;
 	};
+
+	onMount(() => {
+		books.set(data.books);
+	});
 </script>
+
+<svelte:head>
+	<title>Booklist - albpintado</title>
+</svelte:head>
 
 <header id="booklist-header">
 	<a href="/"><h1>Booklist</h1></a>

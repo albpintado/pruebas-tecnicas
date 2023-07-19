@@ -1,13 +1,5 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import type { PageData } from './$types';
 	import { books } from '$lib/stores/books';
-
-	export let data: PageData;
-
-	onMount(() => {
-		books.set(data.books);
-	});
 </script>
 
 <main>
